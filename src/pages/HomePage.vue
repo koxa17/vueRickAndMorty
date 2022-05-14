@@ -294,7 +294,10 @@ export default {
       }
 
     }
+  }
 
+  .cards {
+    margin-bottom: 50px;
   }
 
   .decoration-text{
