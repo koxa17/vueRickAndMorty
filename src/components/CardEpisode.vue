@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-episode">
+  <div class="card card-episode flex-grow-1 flex-md-grow-0">
     <div class="card__episode__bg">
       <img src="@/assets/images/posters/season_1.webp" alt="" class="card__episode__bg__img">
     </div>
@@ -52,6 +52,7 @@ export default {
 
         & h4 {
           margin: 0;
+          font-weight: bold;
         }
 
         & span {

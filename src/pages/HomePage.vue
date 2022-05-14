@@ -31,7 +31,7 @@
             <div class="cards">
               <div class="cards__title">
                   <h3 class="title text-center text-md-start">
-                    <a href="#" class="title__link">Эпизоды</a>
+                    <a href="#" class="title__link decoration-text decoration-text--episode">Эпизоды</a>
                   </h3>
               </div>
 
@@ -50,6 +50,54 @@
             </div>
           </div>
         </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="cards">
+            <div class="cards__title">
+              <h3 class="title text-center text-md-start">
+                <a href="#" class="title__link decoration-text decoration-text--characters">Персонажи</a>
+              </h3>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
+                <card-character/>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
+                <card-character/>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
+                <card-character/>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="cards">
+            <div class="cards__title">
+              <h3 class="title text-center text-md-start">
+                <a href="#" class="title__link decoration-text decoration-text--location">Локации</a>
+              </h3>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
+                <card-location/>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
+                <card-location/>
+              </div>
+              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
+                <card-location/>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   </div>
@@ -58,6 +106,8 @@
 <script>
 // @ is an alias to /src
 import CardEpisode from '@/components/CardEpisode.vue';
+import CardCharacter from "@/components/CardCharacter";
+import CardLocation from "@/components/CardLocation";
 
 export default {
   name: 'HomePage',
@@ -66,6 +116,8 @@ export default {
     this.opacityFullScreenBodyBlock()
   },
   components: {
+    CardLocation,
+    CardCharacter,
     CardEpisode
   },
   data() {
@@ -146,7 +198,7 @@ export default {
 }
 
 .link-anchor {
-  font-size: 2rem;
+  font-size: 1.3rem;
   text-decoration: none;
   color: #00afc7;
   text-shadow: 0 0 2rem #deeb24;
@@ -158,6 +210,12 @@ export default {
   &:hover{
     text-shadow: #deeb24 0 0 3rem;
     letter-spacing: 6px;
+  }
+}
+
+@media (min-width: 768px) {
+  .link-anchor {
+    font-size: 2rem;
   }
 }
 
@@ -209,14 +267,62 @@ export default {
   text-align: start;
 
   & .title {
-    font-size: 3rem;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 20px 0 30px 0;
+
     &__link {
       text-decoration: none;
       color: inherit;
-      &:hover {
-        color: #58ae33;
+
+      &:hover.decoration-text--episode::before {
+        background: #90c32f;
+        transition: left 0.6s;
+        left: 70%;
       }
+
+      &:hover.decoration-text--characters::before {
+        background: #90c32f;
+        transition: left 0.6s;
+        left: 75%;
+      }
+
+      &:hover.decoration-text--location::before {
+        background: #90c32f;
+        transition: left 0.6s;
+        left: 67%;
+      }
+
+    }
+
+  }
+
+  .decoration-text{
+    padding: 30px 0 8px;
+    position: relative;
+    &::before{
+      content: "";
+      position: absolute;
+      left: 6%;
+      bottom: 10px;
+      width: 150px;
+      height: 14px;
+      transform: skew(-12deg) translateX(-50%);
+      background: #acd3ec;
+      z-index: -1;
+      transition: left 0.6s;
+    }
+
+    &--episode::before {
+      left: 30%;
+    }
+    &--characters::before {
+      left: 24%;
+    }
+    &--location::before {
+      left: 31%;
     }
   }
+
 }
 </style>

@@ -23,6 +23,10 @@ export default {
   color: #2c3e50;
 }
 
+body.preloader {
+  overflow: hidden;
+}
+
 body.preloader div div.preloader {
   display: flex;
 }

@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "schwifty";
+    src: url(../fonts/schwifty/font-schwifty.eot?) format("eot"), /* IE8+, знак ? позволяет обойти баг в обработчике значения src */
+    url(../fonts/schwifty/font-schwifty.woff) format("woff"), /* все современные браузеры, IE9+ */
+    url(../fonts/schwifty/font-schwifty.ttf) format("truetype"); /* все современные браузеры */
+}
+
+.font-rick {
+    font-family: 'schwifty', serif;
+    text-shadow: 0 0 2rem #deeb24;
+    color: #00afc7;
+}
