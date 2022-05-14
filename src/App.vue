@@ -1,12 +1,16 @@
 <template>
-      <router-view/>
+  <div>
+    <router-view/>
+    <page-preloader/>
+  </div>
 </template>
 
 <script>
 
 
+import pagePreloader from "@/components/pagePreloader.vue";
 export default {
-
+  components: {pagePreloader}
 }
 </script>
 
@@ -17,5 +21,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+body.preloader div div.preloader {
+  display: flex;
 }
 </style>
