@@ -30,19 +30,19 @@
           <div class="col-12">
             <div class="cards">
               <div class="cards__title">
-                  <h3 class="title">
+                  <h3 class="title text-center text-md-start">
                     <a href="#" class="title__link">Эпизоды</a>
                   </h3>
               </div>
 
               <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
                   <card-episode></card-episode>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
                   <card-episode></card-episode>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
                   <card-episode></card-episode>
                 </div>
               </div>
