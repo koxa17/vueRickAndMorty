@@ -21,6 +21,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-width: 329px;
 }
 
 body.preloader {
@@ -30,4 +31,5 @@ body.preloader {
 body.preloader div div.preloader {
   display: flex;
 }
+
 </style>
