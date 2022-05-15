@@ -10,7 +10,7 @@
           <span>{{episode.episode}}</span>
         </div>
         <div class="card__body__top__right">
-          <p>Дата выхода: <span>{{episode.episode}}</span></p>
+          <p>Дата выхода: <span>{{episode.air_date}}</span></p>
         </div>
       </div>
       <div class="card__body__link text-end"><a href="#" class="link-info" :data-id="episode.id">Подробнее...</a></div>
@@ -33,6 +33,7 @@ export default {
 <style scoped lang="scss">
 .card {
   max-width: 415px;
+  height: 100%;
 
   &__episode__bg{
     max-width: 415px;
@@ -45,12 +46,15 @@ export default {
   &__body {
     padding: 15px 10px;
     text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     &__top {
       &__left {
         display: flex;
         justify-content: space-between;
-        align-items: center;
 
         & h4 {
           margin: 0;
