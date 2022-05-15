@@ -6,31 +6,33 @@
     <div class="card__body">
       <div class="card__body__top">
         <div class="card__body__top__left">
-          <h4>The Ricklantis Mixup</h4>
-          <span>S03E07</span>
+          <h4>{{episode.name}}</h4>
+          <span>{{episode.episode}}</span>
         </div>
         <div class="card__body__top__right">
-          <p>Дата выхода: <span>September 10, 2017</span></p>
+          <p>Дата выхода: <span>{{episode.episode}}</span></p>
         </div>
       </div>
-      <div class="card__body__link text-end"><a href="#" class="link-info">Подробнее...</a></div>
+      <div class="card__body__link text-end"><a href="#" class="link-info" :data-id="episode.id">Подробнее...</a></div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "CardEpisode"
+  name: "CardEpisode",
+  props: {
+    episode:{
+      type: Object,
+      required: true
+    }
+  },
 }
 </script>
 
 <style scoped lang="scss">
 .card {
   max-width: 415px;
-
-  &-episode {
-    //cursor: pointer;
-  }
 
   &__episode__bg{
     max-width: 415px;

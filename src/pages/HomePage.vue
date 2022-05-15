@@ -1,105 +1,105 @@
 <template>
   <div class="home">
-  <div class="full-screen">
-    <div class="full-screen__body">
-      <div class="full-screen__title">
-        <img src="@/assets/images/RickandMortyLogo.png" alt="" id="title" class="full-screen__title-img" @mouseenter="removeOpacityText" @mouseleave="addedOpacityText">
+    <div class="full-screen">
+      <div class="full-screen__body">
+        <div class="full-screen__title">
+          <img src="@/assets/images/RickandMortyLogo.png" alt="" id="title" class="full-screen__title-img"
+               @mouseenter="removeOpacityText" @mouseleave="addedOpacityText">
+        </div>
+        <div class="full-screen__text">
+          <a href="#home__content" id="subtitle" class="link-anchor" @mouseenter="removeOpacityText"
+             @mouseleave="addedOpacityText">Листай дальше что бы увидеть больше</a>
+        </div>
       </div>
-      <div class="full-screen__text">
-        <a href="#home__content" id="subtitle" class="link-anchor" @mouseenter="removeOpacityText" @mouseleave="addedOpacityText">Листай дальше что бы увидеть больше</a>
-      </div>
-    </div>
-    <video preload="auto" autoplay loop class="bg-video" ref="bgVideo" poster="@/assets/images/bg_home.jpg">
-      <source src="@/assets/video/RickAndMorty-1-season.mp4" type="video/mp4">
-    </video>
+      <video preload="auto" autoplay loop class="bg-video" ref="bgVideo" poster="@/assets/images/bg_home.jpg">
+        <source src="@/assets/video/RickAndMorty-1-season.mp4" type="video/mp4">
+      </video>
 
-    <div class="btns-actions-bg">
-      <button type="button" class="btn btn-light btn-pause" @click="videoPauseAndPlay">
-        <img v-show="videoBtn.statusVideo === 'pause'" src='@/assets/images/icons/pause.svg' alt="Звук выключить" class="btn-icon">
-        <img v-show="videoBtn.statusVideo === 'play'" src='@/assets/images/icons/play.svg' alt="Звук включить" class="btn-icon">
-      </button>
-      <button type="button" class="btn btn-light btn-pause" @click="volumeOnAndOff">
-        <img v-show="videoBtn.volumeSwitch === 'Off'" src='@/assets/images/icons/volume_sound_muted.svg' alt="Звук выключить" class="btn-icon">
-        <img v-show="videoBtn.volumeSwitch === 'On'" src='@/assets/images/icons/volume_sound.svg' alt="Звук включить" class="btn-icon">
-      </button>
+      <div class="btns-actions-bg">
+        <button type="button" class="btn btn-light btn-pause" @click="videoPauseAndPlay">
+          <img v-show="videoBtn.statusVideo === 'pause'" src='@/assets/images/icons/pause.svg' alt="Звук выключить"
+               class="btn-icon">
+          <img v-show="videoBtn.statusVideo === 'play'" src='@/assets/images/icons/play.svg' alt="Звук включить"
+               class="btn-icon">
+        </button>
+        <button type="button" class="btn btn-light btn-pause" @click="volumeOnAndOff">
+          <img v-show="videoBtn.volumeSwitch === 'Off'" src='@/assets/images/icons/volume_sound_muted.svg'
+               alt="Звук выключить" class="btn-icon">
+          <img v-show="videoBtn.volumeSwitch === 'On'" src='@/assets/images/icons/volume_sound.svg' alt="Звук включить"
+               class="btn-icon">
+        </button>
+      </div>
     </div>
-  </div>
-  <div class="home__content" id="home__content">
-    <div class="container pt-4 pb-3">
+    <div class="home__content" id="home__content">
+      <div class="container pt-4 pb-3">
         <div class="row">
           <div class="col-12">
             <div class="cards">
               <div class="cards__title">
-                  <h3 class="title text-center text-md-start">
-                    <a href="#" class="title__link decoration-text decoration-text--episode">Эпизоды</a>
-                  </h3>
+                <h3 class="title text-center text-md-start">
+                  <a href="#" class="title__link decoration-text decoration-text--episode">Эпизоды</a>
+                </h3>
+              </div>
+
+              <div class="row" v-if="episodes">
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block" v-for="episode in episodes" :key="episode.id">
+                  <card-episode :episode="episode"/>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="cards">
+              <div class="cards__title">
+                <h3 class="title text-center text-md-start">
+                  <a href="#" class="title__link decoration-text decoration-text--characters">Персонажи</a>
+                </h3>
               </div>
 
               <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                  <card-episode></card-episode>
+                  <card-character/>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                  <card-episode></card-episode>
+                  <card-character/>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                  <card-episode></card-episode>
+                  <card-character/>
                 </div>
               </div>
 
             </div>
           </div>
         </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="cards">
-            <div class="cards__title">
-              <h3 class="title text-center text-md-start">
-                <a href="#" class="title__link decoration-text decoration-text--characters">Персонажи</a>
-              </h3>
-            </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="cards">
+              <div class="cards__title">
+                <h3 class="title text-center text-md-start">
+                  <a href="#" class="title__link decoration-text decoration-text--location">Локации</a>
+                </h3>
+              </div>
 
-            <div class="row">
-              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                <card-character/>
+              <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
+                  <card-location/>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
+                  <card-location/>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
+                  <card-location/>
+                </div>
               </div>
-              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                <card-character/>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                <card-character/>
-              </div>
-            </div>
 
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="cards">
-            <div class="cards__title">
-              <h3 class="title text-center text-md-start">
-                <a href="#" class="title__link decoration-text decoration-text--location">Локации</a>
-              </h3>
             </div>
-
-            <div class="row">
-              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                <card-location/>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                <card-location/>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                <card-location/>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -108,12 +108,17 @@
 import CardEpisode from '@/components/CardEpisode.vue';
 import CardCharacter from "@/components/CardCharacter";
 import CardLocation from "@/components/CardLocation";
+import {getCharacters, getEpisodes, getLocations} from "@/api/requests";
+import {randomIdEpisode} from '@/js/index.js'
 
 export default {
   name: 'HomePage',
-  mounted() {
+  async mounted() {
     this.$refs.bgVideo.volume = 0;
     this.opacityScreenBodyBlock()
+    this.episodes = await this.getEpisodesPreview(3)
+    this.characters = await this.getCharactersPreview(3)
+    this.locations = await this.getLocationPreview(3)
   },
   components: {
     CardLocation,
@@ -125,7 +130,10 @@ export default {
       videoBtn: {
         statusVideo: "pause",
         volumeSwitch: 'Off'
-      }
+      },
+      episodes: null,
+      characters: null,
+      locations: null
     };
   },
   methods: {
@@ -151,7 +159,7 @@ export default {
     },
     opacityScreenBodyBlock() {
       setTimeout(() => {
-         return this.addedOpacityText()
+        return this.addedOpacityText()
       }, 2000)
     },
     removeOpacityText() {
@@ -162,6 +170,34 @@ export default {
       document.querySelector('#title').classList.add('full-screen__title-img--opacity')
       document.querySelector('#subtitle').classList.add('link-anchor--opacity')
     },
+    async getEpisodesPreview(count) {
+      let episodes = [];
+      for (let i = 0; i < count; i++) {
+        await getEpisodes(randomIdEpisode()).then(res => {
+          episodes.push(res)
+        })
+      }
+      console.log(episodes)
+      return episodes
+    },
+    async getCharactersPreview(count) {
+      let characters = [];
+      for (let i = 0; i < count; i++) {
+        await getCharacters(randomIdEpisode()).then(res => {
+          characters.push(res)
+        })
+      }
+      return characters
+    },
+    async getLocationPreview(count) {
+      let locations = [];
+      for (let i = 0; i < count; i++) {
+        await getLocations(randomIdEpisode()).then(res => {
+          locations.push(res)
+        })
+      }
+      return locations
+    }
   },
 }
 </script>
@@ -187,7 +223,7 @@ export default {
   color: white;
   position: absolute;
   z-index: 5;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, .5);
   top: 0;
   bottom: 0;
   left: 0;
@@ -200,8 +236,9 @@ export default {
   justify-content: center;
 }
 
-.full-screen__title-img, .link-anchor{
+.full-screen__title-img, .link-anchor {
   transition: opacity 0.6s;
+
   &--opacity {
     transition: opacity 0.6s;
     opacity: 0.5;
@@ -223,7 +260,7 @@ export default {
   text-transform: uppercase;
   letter-spacing: 5px;
 
-  &:hover{
+  &:hover {
     text-shadow: #deeb24 0 0 3rem;
     letter-spacing: 6px;
   }
@@ -259,6 +296,7 @@ export default {
 .btn-pause {
   padding: 10px;
   cursor: pointer;
+
   &:not(:last-child) {
     margin-right: 10px;
   }
@@ -316,10 +354,11 @@ export default {
     margin-bottom: 50px;
   }
 
-  .decoration-text{
+  .decoration-text {
     padding: 30px 0 8px;
     position: relative;
-    &::before{
+
+    &::before {
       content: "";
       position: absolute;
       left: 6%;
@@ -335,9 +374,11 @@ export default {
     &--episode::before {
       left: 30%;
     }
+
     &--characters::before {
       left: 24%;
     }
+
     &--location::before {
       left: 31%;
     }
