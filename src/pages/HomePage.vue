@@ -1,12 +1,12 @@
 <template>
   <div class="home">
   <div class="full-screen">
-    <div class="full-screen__body" id="fullScreenBody" @mouseenter="removeOpacityForfullScreenBody" @mouseleave="addedOpacityForfullScreenBody">
+    <div class="full-screen__body">
       <div class="full-screen__title">
-        <img src="@/assets/images/RickandMortyLogo.png" alt="" class="full-screen__title-img">
+        <img src="@/assets/images/RickandMortyLogo.png" alt="" id="title" class="full-screen__title-img" @mouseenter="removeOpacityText" @mouseleave="addedOpacityText">
       </div>
       <div class="full-screen__text">
-        <a href="#home__content" class="link-anchor">Листай дальше что бы увидеть больше</a>
+        <a href="#home__content" id="subtitle" class="link-anchor" @mouseenter="removeOpacityText" @mouseleave="addedOpacityText">Листай дальше что бы увидеть больше</a>
       </div>
     </div>
     <video preload="auto" autoplay loop class="bg-video" ref="bgVideo" poster="@/assets/images/bg_home.jpg">
@@ -113,7 +113,7 @@ export default {
   name: 'HomePage',
   mounted() {
     this.$refs.bgVideo.volume = 0;
-    this.opacityFullScreenBodyBlock()
+    this.opacityScreenBodyBlock()
   },
   components: {
     CardLocation,
@@ -149,16 +149,18 @@ export default {
         this.videoBtn.volumeSwitch = "Off";
       }
     },
-    opacityFullScreenBodyBlock() {
+    opacityScreenBodyBlock() {
       setTimeout(() => {
-         return this.addedOpacityForfullScreenBody()
+         return this.addedOpacityText()
       }, 2000)
     },
-    removeOpacityForfullScreenBody() {
-      document.querySelector('#fullScreenBody').classList.remove('full-screen__body--opacity')
+    removeOpacityText() {
+      document.querySelector('#title').classList.remove('full-screen__title-img--opacity')
+      document.querySelector('#subtitle').classList.remove('link-anchor--opacity')
     },
-    addedOpacityForfullScreenBody() {
-      document.querySelector('#fullScreenBody').classList.add('full-screen__body--opacity')
+    addedOpacityText() {
+      document.querySelector('#title').classList.add('full-screen__title-img--opacity')
+      document.querySelector('#subtitle').classList.add('link-anchor--opacity')
     },
   },
 }
@@ -183,11 +185,25 @@ export default {
 
 .full-screen__body {
   color: white;
-  position: relative;
+  position: absolute;
   z-index: 5;
-  transition: opacity 0.6s;
+  background: rgba(0,0,0,.5);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+.full-screen__title-img, .link-anchor{
+  transition: opacity 0.6s;
   &--opacity {
+    transition: opacity 0.6s;
     opacity: 0.5;
   }
 }
