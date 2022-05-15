@@ -1,40 +1,46 @@
 <template>
   <div class="card card-character flex-grow-1 flex-md-grow-0">
     <div class="card__character__bg">
-      <img src="@/assets/images/baby-rick.jpeg" alt="" class="card__character__bg__img">
+      <img :src="character.image" alt="" class="card__character__bg__img">
     </div>
     <div class="card__body">
       <div class="card__body__top d-flex justify-content-between align-items-center">
         <h4>
-          <a href="#">Baby Rick</a>
+          <a href="#">{{character.name}}</a>
         </h4>
         <div class="status">
-          <div class="status__icon status__icon--alive"></div>
-          <div class="status__life">Alive - Human</div>
+          <div class="status__icon" :class="`status__icon--${character.status.toLowerCase()}`"></div>
+          <div class="status__life">{{character.status}} - {{character.species}}</div>
         </div>
       </div>
       <div class="card__body">
         <div class="card__body__info">
-          <p>Last known location:</p>
+          <p>Место рождения:</p>
           <p>
-            <a href="#">Citadel of Ricks</a>
+            <a href="#" :data-url="character.origin.url">{{character.origin.name}}</a>
           </p>
         </div>
         <div class="card__body__info">
-          <p>First seen in:</p>
+          <p>Последнее место нахождение:</p>
           <p>
-            <a href="#">The Ricklantis Mixup</a>
+            <a href="#" :data-url="character.location.url">{{character.location.name}}</a>
           </p>
         </div>
       </div>
-      <div class="card__footer text-end"><a href="#" class="card__footer__link link-info">Подробнее...</a></div>
+      <div class="card__footer text-end"><a href="#" class="card__footer__link link-info" :data-id="character.id">Подробнее...</a></div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "CardCharacter"
+  name: "CardCharacter",
+  props: {
+    character: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
@@ -54,6 +60,10 @@ export default {
   &__body {
     padding: 15px 10px;
     text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     &__top {
       & h4 {
@@ -103,9 +113,6 @@ export default {
   }
 
   .card__body__info {
-    &:not(:last-child) {
-      margin-bottom: 15px;
-    }
     & p {
       margin: 0;
       color: rgb(158, 158, 158);

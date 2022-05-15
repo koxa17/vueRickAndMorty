@@ -6,23 +6,29 @@
     <div class="card__body">
       <div class="card__body">
         <div class="card__body__info">
-          <p>Name: <span>Earth</span></p>
+          <p>Name: <span>{{location.name}}</span></p>
         </div>
         <div class="card__body__info">
-          <p>Type: <span>Planet</span></p>
+          <p>Type: <span>{{location.type}}</span></p>
         </div>
         <div class="card__body__info">
-          <p>Count residents: <span>12</span></p>
+          <p>Count residents: <span>{{location.residents.lenght}}</span></p>
         </div>
       </div>
-      <div class="card__footer text-end"><a href="#" class="card__footer__link link-info">Подробнее...</a></div>
+      <div class="card__footer text-end"><a href="#" class="card__footer__link link-info" :data-id="location.id">Подробнее...</a></div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "CardLocation"
+  name: "CardLocation",
+  props: {
+    location: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
@@ -41,6 +47,10 @@ export default {
 
   &__body {
     padding: 15px 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &__footer {

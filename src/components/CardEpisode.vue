@@ -33,7 +33,6 @@ export default {
 <style scoped lang="scss">
 .card {
   max-width: 415px;
-  height: 100%;
 
   &__episode__bg{
     max-width: 415px;

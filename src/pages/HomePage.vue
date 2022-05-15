@@ -34,25 +34,23 @@
       <div class="container pt-4 pb-3">
         <div class="row">
           <div class="col-12">
-            <div class="cards">
+            <div class="cards" v-if="episodes">
               <div class="cards__title">
                 <h3 class="title text-center text-md-start">
                   <a href="#" class="title__link decoration-text decoration-text--episode">Эпизоды</a>
                 </h3>
               </div>
-
-              <div class="row" v-if="episodes">
+              <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block" v-for="episode in episodes" :key="episode.id">
                   <card-episode :episode="episode"/>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <div class="cards">
+            <div class="cards" v-if="characters">
               <div class="cards__title">
                 <h3 class="title text-center text-md-start">
                   <a href="#" class="title__link decoration-text decoration-text--characters">Персонажи</a>
@@ -60,14 +58,8 @@
               </div>
 
               <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                  <card-character/>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                  <card-character/>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                  <card-character/>
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block" v-for="character in characters" :key="character.id">
+                  <card-character :character="character"/>
                 </div>
               </div>
 
@@ -76,7 +68,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <div class="cards">
+            <div class="cards" v-if="locations">
               <div class="cards__title">
                 <h3 class="title text-center text-md-start">
                   <a href="#" class="title__link decoration-text decoration-text--location">Локации</a>
@@ -84,14 +76,8 @@
               </div>
 
               <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                  <card-location/>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                  <card-location/>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block">
-                  <card-location/>
+                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block" v-for="location in locations" :key="location.id">
+                  <card-location :location="location"/>
                 </div>
               </div>
 
