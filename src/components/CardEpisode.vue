@@ -41,10 +41,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.episodes .card__body.card__body__top__left {
-  font-size: 1rem;
-}
-
 .card {
   max-width: 415px;
 
