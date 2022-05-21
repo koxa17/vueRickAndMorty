@@ -41,11 +41,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.episodes .card__body.card__body__top__left {
+  font-size: 1rem;
+}
+
 .card {
   max-width: 415px;
 
   &__episode__bg {
     max-width: 415px;
+    flex-grow: 1;
+
 
     &__img {
       width: 100%;
@@ -56,10 +62,14 @@ export default {
   &__body {
     padding: 15px 10px;
     text-align: left;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-height: 165px;
+
+    & p {
+      margin-bottom: 0;
+    }
 
     &__top {
       &__left {

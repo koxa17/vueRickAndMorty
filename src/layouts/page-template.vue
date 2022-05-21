@@ -1,7 +1,7 @@
 <template>
   <div>
     <menu-nav-bar></menu-nav-bar>
-    <div class="container pt-3">
+    <div class="container pt-3" :class="pageName">
       <slot></slot>
     </div>
   </div>
@@ -14,6 +14,12 @@ export default {
   name: "page-template",
   components: {
     MenuNavBar
+  },
+  props: {
+    pageName: {
+      type: String,
+      defaults: () => 'some page'
+    }
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <page-template>
+  <page-template page-name="episodes">
     <div class="row">
       <div class="col">
         <h1 class="title text-center">
