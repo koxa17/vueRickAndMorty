@@ -4,17 +4,25 @@ import HomePage from '../pages/HomePage.vue'
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Главная',
     component: HomePage
   },
   {
     path: '/about',
-    name: 'about',
+    name: 'О сайте',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../pages/AboutPage.vue')
-  }
+  },
+  {
+    path: '/episode',
+    name: 'Эпизоды',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../pages/Episode.vue')
+  },
 ]
 
 const router = createRouter({

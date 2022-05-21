@@ -1,91 +1,107 @@
 <template>
   <div class="home">
-    <div class="full-screen">
-      <div class="full-screen__body">
-        <div class="full-screen__title">
-          <img src="@/assets/images/RickandMortyLogo.png" alt="" id="title" class="full-screen__title-img"
-               @mouseenter="removeOpacityText" @mouseleave="addedOpacityText">
-        </div>
-        <div class="full-screen__text">
-          <a href="#home__content" id="subtitle" class="link-anchor" @mouseenter="removeOpacityText"
-             @mouseleave="addedOpacityText">Листай дальше что бы увидеть больше</a>
-        </div>
-      </div>
-      <video preload="auto" autoplay loop class="bg-video" ref="bgVideo" poster="@/assets/images/bg_home.jpg">
-        <source src="@/assets/video/RickAndMorty-1-season.mp4" type="video/mp4">
-      </video>
+    <full-page ref="fullpage" :options="options" id="fullpage">
+      <div class="section">
+        <div class="full-screen">
+          <div class="full-screen__body">
+            <div class="full-screen__title">
+              <img src="@/assets/images/RickandMortyLogo.png" alt="" id="title" class="full-screen__title-img"
+                   @mouseenter="removeOpacityText" @mouseleave="addedOpacityText">
+            </div>
+            <div class="full-screen__text">
+              <a href="#episodes" id="subtitle" class="link-anchor" @mouseenter="removeOpacityText"
+                 @mouseleave="addedOpacityText">Листай дальше что бы увидеть больше</a>
+            </div>
+          </div>
+          <video preload="auto" autoplay data-keepplaying loop class="bg-video" ref="bgVideo" poster="@/assets/images/bg_home.jpg">
+            <source src="@/assets/video/RickAndMorty-1-season.mp4" type="video/mp4">
+          </video>
 
-      <div class="btns-actions-bg">
-        <button type="button" class="btn btn-light btn-pause" @click="videoPauseAndPlay">
-          <img v-show="videoBtn.statusVideo === 'pause'" src='@/assets/images/icons/pause.svg' alt="Звук выключить"
-               class="btn-icon">
-          <img v-show="videoBtn.statusVideo === 'play'" src='@/assets/images/icons/play.svg' alt="Звук включить"
-               class="btn-icon">
-        </button>
-        <button type="button" class="btn btn-light btn-pause" @click="volumeOnAndOff">
-          <img v-show="videoBtn.volumeSwitch === 'Off'" src='@/assets/images/icons/volume_sound_muted.svg'
-               alt="Звук выключить" class="btn-icon">
-          <img v-show="videoBtn.volumeSwitch === 'On'" src='@/assets/images/icons/volume_sound.svg' alt="Звук включить"
-               class="btn-icon">
-        </button>
+          <div class="btns-actions-bg">
+            <button type="button" class="btn btn-light btn-pause" @click="videoPauseAndPlay">
+              <img v-show="videoBtn.statusVideo === 'pause'" src='@/assets/images/icons/pause.svg' alt="Звук выключить"
+                   class="btn-icon">
+              <img v-show="videoBtn.statusVideo === 'play'" src='@/assets/images/icons/play.svg' alt="Звук включить"
+                   class="btn-icon">
+            </button>
+            <button type="button" class="btn btn-light btn-pause" @click="volumeOnAndOff">
+              <img v-show="videoBtn.volumeSwitch === 'Off'" src='@/assets/images/icons/volume_sound_muted.svg'
+                   alt="Звук выключить" class="btn-icon">
+              <img v-show="videoBtn.volumeSwitch === 'On'" src='@/assets/images/icons/volume_sound.svg'
+                   alt="Звук включить"
+                   class="btn-icon">
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="home__content" id="home__content">
-      <div class="container pt-4 pb-3">
-        <div class="row">
-          <div class="col-12">
-            <div class="cards" v-if="episodes">
-              <div class="cards__title">
-                <h3 class="title text-center text-md-start">
-                  <a href="#" class="title__link decoration-text decoration-text--episode">Эпизоды</a>
-                </h3>
-              </div>
-              <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block" v-for="episode in episodes" :key="episode.id">
-                  <card-episode :episode="episode"/>
+      <div class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="cards" v-if="episodes">
+                <div class="cards__title">
+                  <h3 class="title text-center text-md-start">
+                    <router-link to="/episode" class="title__link decoration-text decoration-text--episode">Эпизоды</router-link>
+                  </h3>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block"
+                       v-for="episode in episodes" :key="episode.id">
+                    <card-episode :episode="episode"/>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="cards" v-if="characters">
-              <div class="cards__title">
-                <h3 class="title text-center text-md-start">
-                  <a href="#" class="title__link decoration-text decoration-text--characters">Персонажи</a>
-                </h3>
-              </div>
-
-              <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block" v-for="character in characters" :key="character.id">
-                  <card-character :character="character"/>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="cards" v-if="characters">
+                <div class="cards__title">
+                  <h3 class="title text-center text-md-start">
+                    <a href="#" class="title__link decoration-text decoration-text--characters">Персонажи</a>
+                  </h3>
                 </div>
-              </div>
 
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="cards" v-if="locations">
-              <div class="cards__title">
-                <h3 class="title text-center text-md-start">
-                  <a href="#" class="title__link decoration-text decoration-text--location">Локации</a>
-                </h3>
-              </div>
-
-              <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block" v-for="location in locations" :key="location.id">
-                  <card-location :location="location"/>
+                <div class="row">
+                  <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block"
+                       v-for="character in characters" :key="character.id">
+                    <card-character :character="character"/>
+                  </div>
                 </div>
-              </div>
 
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="cards" v-if="locations">
+                <div class="cards__title">
+                  <h3 class="title text-center text-md-start">
+                    <a href="#" class="title__link decoration-text decoration-text--location">Локации</a>
+                  </h3>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex justify-content-center d-md-block"
+                       v-for="location in locations" :key="location.id">
+                    <card-location :location="location"/>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </full-page>
   </div>
 </template>
 
@@ -119,10 +135,18 @@ export default {
       },
       episodes: null,
       characters: null,
-      locations: null
+      locations: null,
+      options: {
+        licenseKey: 'gplv3-license',
+        anchors: ['main', 'episodes', 'characters', 'locations'],
+        navigation: true,
+        navigationPosition: 'right',
+        navigationTooltips: ['main', 'episodes', 'characters', 'locations'],
+      },
     };
   },
   methods: {
+
     videoPauseAndPlay() {
       const video = this.$refs.bgVideo
       if (video.paused) {

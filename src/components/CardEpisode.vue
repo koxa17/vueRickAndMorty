@@ -1,16 +1,16 @@
 <template>
   <div class="card card-episode flex-grow-1 flex-md-grow-0">
     <div class="card__episode__bg">
-      <img src="@/assets/images/posters/season_1.webp" alt="" class="card__episode__bg__img">
+      <img :src="season" alt="" class="card__episode__bg__img">
     </div>
     <div class="card__body">
       <div class="card__body__top">
         <div class="card__body__top__left">
-          <h4>{{episode.name}}</h4>
-          <span>{{episode.episode}}</span>
+          <h4>{{ episode.name }}</h4>
+          <span>{{ episode.episode }}</span>
         </div>
         <div class="card__body__top__right">
-          <p>Дата выхода: <span>{{episode.air_date}}</span></p>
+          <p>Дата выхода: <span>{{ episode.air_date }}</span></p>
         </div>
       </div>
       <div class="card__body__link text-end"><a href="#" class="link-info" :data-id="episode.id">Подробнее...</a></div>
@@ -22,11 +22,21 @@
 export default {
   name: "CardEpisode",
   props: {
-    episode:{
+    episode: {
       type: Object,
       required: true
     }
   },
+  computed: {
+    season() {
+      let str = this.episode.episode.slice(0, this.episode.episode.indexOf('E')).slice(1)
+      if (str.indexOf('0') === 0) {
+        str = str.slice(str.indexOf('0') + 1)
+        return require(`@/assets/images/posters/Season${str}.jpg`)
+      }
+      return require(`@/assets/images/posters/Season${str}.jpg`)
+    }
+  }
 }
 </script>
 
@@ -34,8 +44,9 @@ export default {
 .card {
   max-width: 415px;
 
-  &__episode__bg{
+  &__episode__bg {
     max-width: 415px;
+
     &__img {
       width: 100%;
       height: 100%;
@@ -72,14 +83,16 @@ export default {
       &__right {
         margin-top: 5px;
         font-style: italic;
+
         & span {
           font-style: normal;
         }
       }
     }
 
-    &__link a{
+    &__link a {
       text-decoration: none;
+
       &:hover {
         text-decoration: underline;
       }
