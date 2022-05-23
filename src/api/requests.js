@@ -8,8 +8,8 @@ export async function getEpisodes(id) {
     return response.data
 }
 
-export async function getAllEpisodes() {
-    const response = await request(get, EpisodePage())
+export async function getAllEpisodes(number) {
+    const response = await request(get, EpisodePage(number))
     responseExample.data = response.data
     responseExample.status = response.status
     return response.data

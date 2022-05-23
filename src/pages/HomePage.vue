@@ -41,7 +41,7 @@
               <div class="cards" v-if="episodes">
                 <div class="cards__title">
                   <h3 class="title text-center text-md-start">
-                    <router-link to="/episode" class="title__link decoration-text decoration-text--episode">Эпизоды</router-link>
+                    <router-link to="/episodes" class="title__link decoration-text decoration-text--episode">Эпизоды</router-link>
                   </h3>
                 </div>
                 <div class="row">
@@ -146,7 +146,6 @@ export default {
     };
   },
   methods: {
-
     videoPauseAndPlay() {
       const video = this.$refs.bgVideo
       if (video.paused) {
@@ -187,7 +186,6 @@ export default {
           episodes.push(res)
         })
       }
-      console.log(episodes)
       return episodes
     },
     async getCharactersPreview(count) {
