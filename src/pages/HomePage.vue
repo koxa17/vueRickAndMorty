@@ -38,7 +38,7 @@
               <div class="cards" v-if="episodes">
                 <div class="cards__title">
                   <h3 class="title text-center text-md-start">
-                    <router-link to="/all-cards/episodes" class="title__link decoration-text decoration-text--episode">Эпизоды</router-link>
+                    <router-link to="/all-cards/episodes" class="title__link decoration-text decoration-text--episode" id="episodes">Эпизоды</router-link>
                   </h3>
                 </div>
                 <div class="row">
@@ -56,7 +56,7 @@
               <div class="cards" v-if="characters">
                 <div class="cards__title">
                   <h3 class="title text-center text-md-start">
-                    <a href="#" class="title__link decoration-text decoration-text--characters">Персонажи</a>
+                    <router-link to="/all-cards/characters" class="title__link decoration-text decoration-text--characters" id="characters">Персонажи</router-link>
                   </h3>
                 </div>
 
@@ -76,7 +76,7 @@
               <div class="cards" v-if="locations">
                 <div class="cards__title">
                   <h3 class="title text-center text-md-start">
-                    <a href="#" class="title__link decoration-text decoration-text--location">Локации</a>
+                    <router-link to="/all-cards/locations" class="title__link decoration-text decoration-text--location" id="locations">Локации</router-link>
                   </h3>
                 </div>
 
