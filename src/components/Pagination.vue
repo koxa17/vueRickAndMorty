@@ -5,7 +5,7 @@
         <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)">Previous</a>
       </li>
       <template v-for="page in totalPages" :key="page">
-        <li class="page-item" :class="{disabled: currentPage === page}"><a class="page-link" href="#" @click.prevent="changePage(page)">{{page}}</a></li>
+        <li class="page-item" v-if="currentPage + 3 >= page" :class="{disabled: currentPage === page}"><a class="page-link" href="#" @click.prevent="changePage(page)">{{page}}</a></li>
       </template>
       <li class="page-item" :class="{disabled: currentPage === totalPages}">
         <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">Next</a>

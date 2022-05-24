@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-12 pt-1 pb-4" v-if="data">
         <pagination v-model="page" :total="total" :item="data.length" :page-size="perPage"
-                    @page-changed="getData($router.params.category, $event)"/>
+                    @page-changed="changePage($event)"/>
       </div>
     </div>
   </page-template>
@@ -71,6 +71,10 @@ export default {
           await this.getLocations(pageNumber)
           break;
       }
+    },
+
+    async changePage(page) {
+      await this.getData(this.$route.params.category, page)
     },
 
     async getEpisodes(pageNumber = 1) {
