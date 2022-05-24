@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <full-page ref="fullpage" :options="options" id="fullpage">
-      <div class="section">
         <div class="full-screen">
           <div class="full-screen__body">
             <div class="full-screen__title">
@@ -33,15 +31,14 @@
             </button>
           </div>
         </div>
-      </div>
-      <div class="section">
+      <div class="section home__content">
         <div class="container">
           <div class="row">
             <div class="col-12">
               <div class="cards" v-if="episodes">
                 <div class="cards__title">
                   <h3 class="title text-center text-md-start">
-                    <router-link to="/episodes" class="title__link decoration-text decoration-text--episode">Эпизоды</router-link>
+                    <router-link to="/all-cards/episodes" class="title__link decoration-text decoration-text--episode">Эпизоды</router-link>
                   </h3>
                 </div>
                 <div class="row">
@@ -53,10 +50,7 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="container">
+
           <div class="row">
             <div class="col-12">
               <div class="cards" v-if="characters">
@@ -76,10 +70,7 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="container">
+
           <div class="row">
             <div class="col-12">
               <div class="cards" v-if="locations">
@@ -99,9 +90,9 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
-    </full-page>
   </div>
 </template>
 
@@ -136,13 +127,6 @@ export default {
       episodes: null,
       characters: null,
       locations: null,
-      options: {
-        licenseKey: 'gplv3-license',
-        anchors: ['main', 'episodes', 'characters', 'locations'],
-        navigation: true,
-        navigationPosition: 'right',
-        navigationTooltips: ['main', 'episodes', 'characters', 'locations'],
-      },
     };
   },
   methods: {
