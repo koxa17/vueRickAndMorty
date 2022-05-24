@@ -8,14 +8,26 @@
       </div>
     </div>
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 pt-4 pb-4" v-if="data">
-      <div class="col pb-4" v-for="item in data" :key="item.id">
-        <card-episode :episode="item"/>
-      </div>
+      <template v-if="$route.params.category === 'episodes'">
+        <div class="col pb-4" v-for="item in data" :key="item.id">
+          <card-episode :episode="item"/>
+        </div>
+      </template>
+      <template v-if="$route.params.category === 'characters'">
+        <div class="col pb-4"  v-for="item in data" :key="item.id">
+          <card-character :character="item"/>
+        </div>
+      </template>
+      <template v-if="$route.params.category === 'locations'">
+        <div class="col pb-4" v-for="item in data" :key="item.id">
+          <card-location :location="item"/>
+        </div>
+      </template>
     </div>
     <div class="row">
       <div class="col-12 pt-1 pb-4" v-if="data">
         <pagination v-model="page" :total="total" :item="data.length" :page-size="perPage"
-                    @page-changed="getEpisodes($event)"/>
+                    @page-changed="getData($router.params.category, $event)"/>
       </div>
     </div>
   </page-template>
@@ -24,12 +36,14 @@
 <script>
 import PageTemplate from "@/layouts/page-template";
 import CardEpisode from "@/components/CardEpisode";
-import {getAllEpisodes} from "@/api/requests";
+import {getAllEpisodes, getAllCharacters, getAllLocations} from "@/api/requests";
 import Pagination from "@/components/Pagination";
+import CardCharacter from "@/components/CardCharacter";
+import CardLocation from "@/components/CardLocation";
 
 export default {
-  name: "Episode",
-  components: {Pagination, PageTemplate, CardEpisode},
+  name: "all-card",
+  components: {CardLocation, CardCharacter, Pagination, PageTemplate, CardEpisode},
   data() {
     return {
       data: null,
@@ -40,8 +54,8 @@ export default {
     }
   },
   async created() {
-    console.log(this.$route.params)
-    await this.getEpisodes()
+
+    await this.getData(this.$route.params.category)
   },
   methods: {
 
@@ -67,14 +81,14 @@ export default {
       })
     },
     async getCharacters(pageNumber = 1) {
-      await getAllEpisodes(pageNumber).then(response => {
+      await getAllCharacters(pageNumber).then(response => {
         this.total = response.info.count
         this.data = response.results
         this.perPage = response.info.pages
       })
     },
     async getLocations(pageNumber = 1) {
-      await getAllEpisodes(pageNumber).then(response => {
+      await getAllLocations(pageNumber).then(response => {
         this.total = response.info.count
         this.data = response.results
         this.perPage = response.info.pages
