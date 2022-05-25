@@ -34,6 +34,7 @@ export default {
   },
   methods: {
     async changePage(pageNumber) {
+      window.scrollTo(0,0);
       this.currentPage = pageNumber
       await this.$router.replace({ query: {page: pageNumber} })
       this.$emit('page-changed')

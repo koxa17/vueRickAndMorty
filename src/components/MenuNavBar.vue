@@ -13,12 +13,21 @@
             <router-link class="nav-link" aria-current="page" to="/">Главная</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" aria-current="page" to="About">About</router-link>
+            <router-link class="nav-link" aria-current="page" to="/all-cards/episodes">Эпизоды</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" aria-current="page" to="/all-cards/characters">Персонажи</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" aria-current="page" to="/all-cards/locations">Локации</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" aria-current="page" to="About">О сайте</router-link>
           </li>
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success" type="submit">Поиск</button>
         </form>
       </div>
     </div>
@@ -27,7 +36,15 @@
 
 <script>
 export default {
-  name: "MenuNavBar"
+  name: "MenuNavBar",
+  data() {
+    return {
+      currentPage: ''
+    }
+  },
+  created() {
+    this.currentPage = this.$route.params.pageName
+  }
 }
 </script>
 

@@ -102,7 +102,7 @@ import CardEpisode from '@/components/CardEpisode.vue';
 import CardCharacter from "@/components/CardCharacter";
 import CardLocation from "@/components/CardLocation";
 import {getCharacters, getEpisodes, getLocations} from "@/api/requests";
-import {randomIdEpisode} from '@/js/index.js'
+import {randomIdEpisode} from '@/js/index.js';
 
 export default {
   name: 'HomePage',
@@ -127,6 +127,7 @@ export default {
       episodes: null,
       characters: null,
       locations: null,
+      timeOpacityScreenBlockFunction: 0
     };
   },
   methods: {
@@ -151,7 +152,7 @@ export default {
       }
     },
     opacityScreenBodyBlock() {
-      setTimeout(() => {
+      this.timeOpacityScreenBlockFunction = setTimeout(() => {
         return this.addedOpacityText()
       }, 2000)
     },
@@ -191,6 +192,9 @@ export default {
       return locations
     }
   },
+  unmounted() {
+    clearTimeout(this.timeOpacityScreenBlockFunction)
+  }
 }
 </script>
 

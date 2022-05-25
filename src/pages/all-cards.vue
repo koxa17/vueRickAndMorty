@@ -7,18 +7,18 @@
         </h1>
       </div>
     </div>
-    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 pt-4 pb-4" v-if="data">
-      <template v-if="$route.params.category === 'episodes'">
+    <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 row-cols-xxl-5 pt-4 pb-4" v-if="data">
+      <template v-if="$route.params.pagename === 'episodes'">
         <div class="col pb-4" v-for="item in data" :key="item.id">
           <card-episode :episode="item"/>
         </div>
       </template>
-      <template v-if="$route.params.category === 'characters'">
+      <template v-if="$route.params.pagename === 'characters'">
         <div class="col pb-4"  v-for="item in data" :key="item.id">
           <card-character :character="item"/>
         </div>
       </template>
-      <template v-if="$route.params.category === 'locations'">
+      <template v-if="$route.params.pagename === 'locations'">
         <div class="col pb-4" v-for="item in data" :key="item.id">
           <card-location :location="item"/>
         </div>
@@ -53,12 +53,12 @@ export default {
     }
   },
   async created() {
-    await this.getData(this.$route.params.category, this.$route.query.page)
+    await this.getData(this.$route.params.pagename, this.$route.query.page)
   },
   methods: {
 
-    async getData(category, pageNumber = 1) {
-      switch (category) {
+    async getData(pagename, pageNumber = 1) {
+      switch (pagename) {
         case 'episodes' :
           await this.getEpisodes(pageNumber)
           break;
@@ -72,7 +72,7 @@ export default {
     },
 
     async changePage() {
-      await this.getData(this.$route.params.category, this.$route.query.page)
+      await this.getData(this.$route.params.pagename, this.$route.query.page)
     },
 
     async getEpisodes(pageNumber = 1) {
@@ -100,7 +100,7 @@ export default {
   computed: {
     pageTitle() {
       let title;
-      switch (this.$route.params.category) {
+      switch (this.$route.params.pagename) {
         case 'episodes':
           title = 'Эпизоды'
           break;

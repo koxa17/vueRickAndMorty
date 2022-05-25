@@ -12,7 +12,7 @@
           <p>Type: <span>{{location.type}}</span></p>
         </div>
         <div class="card__body__info">
-          <p>Count residents: <span>{{location.residents.lenght}}</span></p>
+          <p>Count residents: <span>{{totalResidents}}</span></p>
         </div>
       </div>
       <div class="card__footer text-end"><a href="#" class="card__footer__link link-info" :data-id="location.id">Подробнее...</a></div>
@@ -27,6 +27,11 @@ export default {
     location: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    totalResidents() {
+      return this.location.residents.length
     }
   }
 }
