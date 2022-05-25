@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-12 pt-1 pb-4" v-if="data">
         <pagination v-model="page" :total="total" :item="data.length" :page-size="perPage"
-                    @page-changed="changePage($event)"/>
+                    @page-changed="changePage($event)" :range="4"/>
       </div>
     </div>
   </page-template>

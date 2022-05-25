@@ -1,23 +1,23 @@
 <template>
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item" :class="{disabled: +currentPage === 1}">
-        <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)">Previous</a>
-      </li>
-      <template v-for="page in totalPages" :key="page">
-        <li class="page-item" :class="{active: +currentPage === page}"><a class="page-link" href="#" @click.prevent="changePage(page)">{{page}}</a></li>
-      </template>
-      <li class="page-item" :class="{disabled: +currentPage === totalPages}">
-        <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">Next</a>
-      </li>
-    </ul>
+  <nav class="d-flex justify-content-center">
+    <paginate
+      :page-count="totalPages"
+      :page-range="range"
+      :container-class="'pagination'"
+      :page-class="'page-item'"
+      :prev-text="'Предыдущая'"
+      :next-text="'Следующая'"
+      :click-handler="changePage"
+    />
   </nav>
 </template>
 
 <script>
+import Paginate from 'vuejs-paginate-next';
 export default {
   name: "Pagination",
-  props: ['total', 'item', 'pageSize'],
+  props: ['total', 'item', 'pageSize', 'range'],
+  components: {Paginate},
   data() {
     return {
       currentPage: 1,
@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .page-item.active .page-link {
   border-radius: 5px;
   background: #0dcaf0;
@@ -49,7 +49,11 @@ export default {
   color: white;
 }
 
-.page-link:focus {
+.pagination .page-item .page-link{
+  cursor: pointer;
+}
+
+.pagination .page-link:focus {
   box-shadow: none;
 }
 </style>
