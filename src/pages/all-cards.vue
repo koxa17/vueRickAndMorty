@@ -40,7 +40,6 @@ import {getAllEpisodes, getAllCharacters, getAllLocations} from "@/api/requests"
 import Pagination from "@/components/Pagination";
 import CardCharacter from "@/components/CardCharacter";
 import CardLocation from "@/components/CardLocation";
-
 export default {
   name: "all-card",
   components: {CardLocation, CardCharacter, Pagination, PageTemplate, CardEpisode},
@@ -54,8 +53,7 @@ export default {
     }
   },
   async created() {
-
-    await this.getData(this.$route.params.category)
+    await this.getData(this.$route.params.category, this.$route.query.page)
   },
   methods: {
 
@@ -73,8 +71,8 @@ export default {
       }
     },
 
-    async changePage(page) {
-      await this.getData(this.$route.params.category, page)
+    async changePage() {
+      await this.getData(this.$route.params.category, this.$route.query.page)
     },
 
     async getEpisodes(pageNumber = 1) {
