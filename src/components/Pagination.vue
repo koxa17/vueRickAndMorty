@@ -1,6 +1,7 @@
 <template>
   <nav class="d-flex justify-content-center">
     <paginate
+        v-model="currentPage"
       :page-count="totalPages"
       :page-range="range"
       :container-class="'pagination'"
@@ -24,7 +25,7 @@ export default {
     }
   },
   created() {
-    this.currentPage = this.$route.query.page || 1
+    this.currentPage = +this.$route.query.page || 1
   },
   computed: {
     totalPages() {
