@@ -17,7 +17,7 @@
 import Paginate from 'vuejs-paginate-next';
 export default {
   name: "Pagination",
-  props: ['total', 'item', 'pageSize', 'range'],
+  props: ['total', 'perPage', 'pageSize', 'range'],
   components: {Paginate},
   data() {
     return {
@@ -29,15 +29,13 @@ export default {
   },
   computed: {
     totalPages() {
-      return this.currentPage <= this.pageSize ? this.pageSize : Math.ceil(this.total / this.item)
+      return this.currentPage <= this.pageSize ? this.pageSize : Math.ceil(this.total / this.perPage)
     }
   },
   methods: {
     async changePage(pageNumber) {
-      window.scrollTo(0,0);
       this.currentPage = pageNumber
       await this.$router.replace({ query: {page: pageNumber} })
-      this.$emit('page-changed')
     },
   }
 }
