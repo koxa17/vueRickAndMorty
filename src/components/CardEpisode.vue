@@ -6,14 +6,17 @@
     <div class="card__body">
       <div class="card__body__top">
         <div class="card__body__top__left">
-          <h4>{{ episode.name }}</h4>
-          <span>{{ episode.episode }}</span>
+          <h4 class="card__body__top__left__title">{{ episode.name }}</h4>
+
         </div>
         <div class="card__body__top__right">
           <p>Дата выхода: <span>{{ episode.air_date }}</span></p>
         </div>
       </div>
-      <div class="card__body__link text-end"><a href="#" class="link-info" :data-id="episode.id">Подробнее...</a></div>
+      <div class="card__body__link d-flex justify-content-between">
+        <span>{{ episode.episode }}</span>
+        <a href="#" class="link-info" :data-id="episode.id">Подробнее</a>
+      </div>
     </div>
   </div>
 </template>
@@ -68,21 +71,14 @@ export default {
     }
 
     &__top {
+      text-align: center;
       &__left {
-        display: flex;
-        justify-content: space-between;
 
         & h4 {
           margin: 0;
           font-weight: bold;
+          font-size: 18px;
         }
-
-        & span {
-          font-size: 1rem;
-          font-style: italic;
-          color: gray;
-        }
-
 
       }
 
@@ -90,17 +86,29 @@ export default {
         margin-top: 5px;
         font-style: italic;
 
+        & p {
+          display: flex;
+          flex-direction: column;
+        }
+
         & span {
           font-style: normal;
         }
       }
     }
 
-    &__link a {
-      text-decoration: none;
+    &__link {
+      & span {
+        font-size: 1rem;
+        font-style: italic;
+        color: gray;
+      }
+      a {
+        text-decoration: none;
 
-      &:hover {
-        text-decoration: underline;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
 

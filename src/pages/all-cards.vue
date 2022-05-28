@@ -8,23 +8,6 @@
       </div>
     </div>
     <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 row-cols-xxl-5 pt-4 pb-4" v-if="finishLoadContent">
-      <!--      <template v-if="$route.params.pagename === 'episodes'">-->
-      <!--        <div class="col pb-4" v-for="item in data" :key="item.id">-->
-      <!--          <card-episode :episode="item"/>-->
-      <!--        </div>-->
-      <!--      </template>-->
-      <!--      <template v-if="$route.params.pagename === 'characters'">-->
-      <!--        <div class="col pb-4"  v-for="item in data" :key="item.id">-->
-      <!--          <card-character :character="item"/>-->
-      <!--        </div>-->
-      <!--      </template>-->
-      <!--      <template v-if="$route.params.pagename === 'locations'">-->
-      <!--        <div class="col pb-4" v-for="item in data" :key="item.id">-->
-      <!--          <card-location :location="item"/>-->
-      <!--        </div>-->
-      <!--      </template>-->
-
-
       <div class="col pb-4" v-for="item in data" :key="item.id">
         <component :is="cardComponent" :episode="item" :character="item" :location="item" :key="item.id"/>
       </div>
